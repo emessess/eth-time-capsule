@@ -7,20 +7,25 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
+const contract = require('truffle-contract')
+const capsule = contract(CapsuleContract);
+
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      message: '',
+      storageValue: 0,
+      accounts: [],
       web3: null,
       capsuleInstance: null,
-      accounts: [],
-      newMsgInput: ''
+      newMsgInput: '',
+      message: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.submitMessage = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkChain = this.checkChain.bind(this);
   }
 
   componentWillMount() {
@@ -49,15 +54,15 @@ class App extends Component {
      * state management library, but for convenience I've placed them here.
      */
 
-    const contract = require('truffle-contract')
-    const capsule = contract(CapsuleContract);
+     let capsuleInstance;
+
+
     capsule.setProvider(this.state.web3.currentProvider);
-
-
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
       capsule.deployed().then((instance) => {
-        return this.setState({ capsuleInstance: instance, accounts: accounts })
+        capsuleInstance = instance;
+        this.setState({ accounts })
       }).then((result) => {
         // Get the value from the contract to prove it worked.
         return this.state.capsuleInstance.getMessage.call(accounts[0])
@@ -73,18 +78,25 @@ class App extends Component {
     this.setState({newMsgInput: event.target.value})
   }
 
-  submitMessage(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    console.log('stuff');
-    this.state.capsuleInstance.setMessage(this.state.newMsgInput, {from: this.state.accounts[0]})
-      .then((msg) => {
-         console.log(msg);
-      });
+    capsule.deployed().then(instance => {
+      return instance.setMessage(this.state.newMsgInput, {from: this.state.accounts[0]})
+    }).then(transaction => {
+      //transaction object is here now, could use to render transaction reciept number
+      this.setState({newMsgInput: ''});
+    })
+
+
   }
 
-  checkMessage(event) {
-    event.preventDefault();
-    this.state.capsuleInstance.getMessage.call(this.state.accounts[0]);
+  checkChain() {
+    capsule.deployed().then(instance => {
+      return instance.getMessage.call(this.state.accounts[0])
+    }).then(result => {
+      let stringResult = this.state.web3.toAscii(result);
+      return this.setState({ storageValue: stringResult})
+    })
   }
 
   render() {
@@ -98,14 +110,14 @@ class App extends Component {
           <div className="pure-g">
             <div className="pure-u-1-1">
               <h1>Ethereum Time Capsule</h1>
-              <form>
+              <form onSubmit={this.handleSubmit}>
                 <input type="text" maxLength="32" value={this.state.newMsgInput} onChange={this.handleChange}/>
-                <input type="submit" value="Transact" onSubmit={this.submitMessage}/>
+                <input type="submit" value="Transact" />
               </form>
             </div>
             <div className="pure-u-1-1">
-              <h1>Ethereum Time Capsule</h1>
-              <p>Your message is: {this.state.message}</p>
+              <p>Your message is: {this.state.storageValue}</p>
+              <button onClick={this.checkChain}>Check Chain</button>
             </div>
           </div>
         </main>
