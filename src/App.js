@@ -12,13 +12,15 @@ class App extends Component {
     super(props)
 
     this.state = {
-      storageValue: 0,
+      message: '',
       web3: null,
       capsuleInstance: null,
+      accounts: [],
       newMsgInput: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.submitMessage = this.handleChange.bind(this);
   }
 
   componentWillMount() {
@@ -51,28 +53,38 @@ class App extends Component {
     const capsule = contract(CapsuleContract);
     capsule.setProvider(this.state.web3.currentProvider);
 
-    // Declaring this for later so we can chain functions on SimpleStorage.
-    let capsuleInstance;
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
       capsule.deployed().then((instance) => {
-        capsuleInstance = instance;
-        this.setState({ capsuleInstance })
-        return capsuleInstance.setMessage('hello world', {from: accounts[0]})
+        return this.setState({ capsuleInstance: instance, accounts: accounts })
       }).then((result) => {
         // Get the value from the contract to prove it worked.
-        return capsuleInstance.getMessage.call(accounts[0])
+        return this.state.capsuleInstance.getMessage.call(accounts[0])
       }).then((result) => {
         // Update state with the result.
         let stringResult = this.state.web3.toAscii(result);
-        return this.setState({ storageValue: stringResult })
+        return this.setState({ message: stringResult })
       })
     })
   }
 
   handleChange(event) {
     this.setState({newMsgInput: event.target.value})
+  }
+
+  submitMessage(event) {
+    event.preventDefault();
+    console.log('stuff');
+    this.state.capsuleInstance.setMessage(this.state.newMsgInput, {from: this.state.accounts[0]})
+      .then((msg) => {
+         console.log(msg);
+      });
+  }
+
+  checkMessage(event) {
+    event.preventDefault();
+    this.state.capsuleInstance.getMessage.call(this.state.accounts[0]);
   }
 
   render() {
@@ -88,12 +100,12 @@ class App extends Component {
               <h1>Ethereum Time Capsule</h1>
               <form>
                 <input type="text" maxLength="32" value={this.state.newMsgInput} onChange={this.handleChange}/>
-                <input type="submit" value="Transact"/>
+                <input type="submit" value="Transact" onSubmit={this.submitMessage}/>
               </form>
             </div>
             <div className="pure-u-1-1">
               <h1>Ethereum Time Capsule</h1>
-              <p>Your message is: {this.state.storageValue}</p>
+              <p>Your message is: {this.state.message}</p>
             </div>
           </div>
         </main>
