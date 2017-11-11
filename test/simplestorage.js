@@ -1,4 +1,4 @@
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
+const SimpleStorage = artifacts.require("./SimpleStorage.sol");
 
 contract('SimpleStorage', function(accounts) {
 
