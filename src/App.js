@@ -16,6 +16,7 @@ class App extends Component {
 
     this.state = {
       storageValue: 0,
+      blockNum: 0,
       accounts: [],
       web3: null,
       capsuleInstance: null,
@@ -84,6 +85,7 @@ class App extends Component {
       return instance.setMessage(this.state.newMsgInput, {from: this.state.accounts[0]})
     }).then(transaction => {
       //transaction object is here now, could use to render transaction reciept number
+      this.setState({blockNum: this.state.web3.eth.getBlock(this.state.web3.eth.blockNumber)});
       this.setState({newMsgInput: ''});
     })
 

@@ -30,18 +30,18 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6101658061001e6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b6100f3565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020816000191690555050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050905600a165627a7a72305820eac88a0649b9fcc4b5b0c54fb1ecadc021b39aee9f54a3a9554a105fb639f8ae0029",
-  "deployedBytecode": "0x60606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b6100f3565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020816000191690555050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050905600a165627a7a72305820eac88a0649b9fcc4b5b0c54fb1ecadc021b39aee9f54a3a9554a105fb639f8ae0029",
-  "sourceMap": "25:231:0:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "25:231:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;177:77;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:85;161:7;138:8;:20;147:10;138:20;;;;;;;;;;;;;;;:30;;;;;;;88:85;:::o;177:77::-;207:7;229:8;:20;238:10;229:20;;;;;;;;;;;;;;;;222:27;;177:77;:::o",
-  "source": "pragma solidity ^0.4.2;\n\ncontract Capsule {\n  mapping (address => bytes32) messages;\n\n  function setMessage(bytes32 message) public {\n    messages[msg.sender] = message;\n  }\n\n  function getMessage() returns(bytes32) {\n    return messages[msg.sender];\n  }\n}",
+  "bytecode": "0x6060604052341561000f57600080fd5b6102088061001e6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b61013c565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000018160001916905550426000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001018190555050565b6000806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101544203905060b48111151561019457600080fd5b6000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154915050905600a165627a7a72305820ce89ee00a06b32d2db198d897de5fbb26b2b04cb5c352b3a9053b0b5071abead0029",
+  "deployedBytecode": "0x60606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b61013c565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000018160001916905550426000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001018190555050565b6000806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101544203905060b48111151561019457600080fd5b6000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154915050905600a165627a7a72305820ce89ee00a06b32d2db198d897de5fbb26b2b04cb5c352b3a9053b0b5071abead0029",
+  "sourceMap": "25:444:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:444:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;152:134;;;;;;;;;;;;;;;;;;;;;;;;;;;;;290:176;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;152:134;231:7;202:8;:20;211:10;202:20;;;;;;;;;;;;;;;:26;;:36;;;;;;;277:3;244:8;:20;253:10;244:20;;;;;;;;;;;;;;;:30;;:36;;;;152:134;:::o;290:176::-;320:7;335:15;359:8;:20;368:10;359:20;;;;;;;;;;;;;;;:30;;;353:3;:36;335:54;;416:3;403:10;:16;395:25;;;;;;;;434:8;:20;443:10;434:20;;;;;;;;;;;;;;;:26;;;427:33;;290:176;;:::o",
+  "source": "pragma solidity ^0.4.2;\n\ncontract Capsule {\n\n  struct Message {\n    bytes32 blurb;\n    uint timeStamp;\n  }\n\n  mapping (address => Message) messages;\n\n  function setMessage(bytes32 message) public {\n    messages[msg.sender].blurb = message;\n    messages[msg.sender].timeStamp = now;\n\n  }\n\n  function getMessage() returns(bytes32) {\n    uint timePassed = now - messages[msg.sender].timeStamp;\n    require(timePassed > 180);\n\n    return messages[msg.sender].blurb;\n\n  }\n\n}",
   "sourcePath": "/Users/emessess/FSA/Senior/Stackathon/Notes/contracts/Capsule.sol",
   "ast": {
     "attributes": {
       "absolutePath": "/Users/emessess/FSA/Senior/Stackathon/Notes/contracts/Capsule.sol",
       "exportedSymbols": {
         "Capsule": [
-          30
+          61
         ]
       }
     },
@@ -71,37 +71,45 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            30
+            61
           ],
           "name": "Capsule",
-          "scope": 31
+          "scope": 62
         },
         "children": [
           {
             "attributes": {
               "constant": false,
-              "name": "messages",
-              "scope": 30,
+              "name": "Message",
+              "scope": 61,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(address => bytes32)",
               "value": null,
-              "visibility": "internal"
+              "visibility": "public",
+              "canonicalName": "Capsule.Message"
             },
             "children": [
               {
                 "attributes": {
-                  "type": "mapping(address => bytes32)"
+                  "type": "bytes32",
+                  "constant": false,
+                  "name": "blurb",
+                  "scope": 6,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "value": null,
+                  "visibility": "internal"
                 },
                 "children": [
                   {
                     "attributes": {
-                      "name": "address",
-                      "type": "address"
+                      "name": "bytes32",
+                      "type": "bytes32"
                     },
                     "id": 2,
                     "name": "ElementaryTypeName",
-                    "src": "55:7:0"
+                    "src": "68:7:0"
                   },
                   {
                     "attributes": {
@@ -113,14 +121,40 @@
                     "src": "66:7:0"
                   }
                 ],
-                "id": 4,
-                "name": "Mapping",
-                "src": "46:28:0"
+                "id": 3,
+                "name": "VariableDeclaration",
+                "src": "68:13:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "timeStamp",
+                  "scope": 6,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 4,
+                    "name": "ElementaryTypeName",
+                    "src": "87:4:0"
+                  }
+                ],
+                "id": 5,
+                "name": "VariableDeclaration",
+                "src": "87:14:0"
               }
             ],
-            "id": 5,
-            "name": "VariableDeclaration",
-            "src": "46:37:0"
+            "id": 6,
+            "name": "StructDefinition",
+            "src": "47:59:0"
           },
           {
             "attributes": {
@@ -130,12 +164,16 @@
               "modifiers": [
                 null
               ],
-              "name": "setMessage",
+              "name": "messages",
               "payable": false,
-              "scope": 30,
+              "scope": 61,
               "stateMutability": "nonpayable",
               "superFunction": null,
-              "visibility": "public"
+              "visibility": "internal",
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => struct Capsule.Message storage ref)",
+              "value": null
             },
             "children": [
               {
@@ -143,11 +181,11 @@
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "message",
+                      "name": "address",
                       "scope": 18,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "type": "bytes32",
+                      "type": "address",
                       "value": null,
                       "visibility": "internal"
                     },
@@ -163,13 +201,27 @@
                       }
                     ],
                     "id": 7,
-                    "name": "VariableDeclaration",
-                    "src": "108:15:0"
+                    "name": "ElementaryTypeName",
+                    "src": "119:7:0"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Message",
+                      "referencedDeclaration": 6,
+                      "type": "struct Capsule.Message storage pointer"
+                    },
+                    "id": 8,
+                    "name": "UserDefinedTypeName",
+                    "src": "130:7:0"
                   }
                 ],
-                "id": 8,
-                "name": "ParameterList",
-                "src": "107:17:0"
+                "id": 9,
+                "name": "Mapping",
+                "src": "110:28:0",
+                "attributes": {
+                  "type": "mapping(address => struct Capsule.Message storage ref)"
+                }
               },
               {
                 "attributes": {
@@ -287,9 +339,9 @@
                 "src": "132:41:0"
               }
             ],
-            "id": 18,
-            "name": "FunctionDefinition",
-            "src": "88:85:0"
+            "id": 10,
+            "name": "VariableDeclaration",
+            "src": "110:37:0"
           },
           {
             "attributes": {
@@ -299,9 +351,9 @@
               "modifiers": [
                 null
               ],
-              "name": "getMessage",
+              "name": "setMessage",
               "payable": false,
-              "scope": 30,
+              "scope": 61,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -313,10 +365,37 @@
                     null
                   ]
                 },
-                "children": [],
-                "id": 19,
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "message",
+                      "scope": 32,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 11,
+                        "name": "ElementaryTypeName",
+                        "src": "172:7:0"
+                      }
+                    ],
+                    "id": 12,
+                    "name": "VariableDeclaration",
+                    "src": "172:15:0"
+                  }
+                ],
+                "id": 13,
                 "name": "ParameterList",
-                "src": "196:2:0"
+                "src": "171:17:0"
               },
               {
                 "children": [
@@ -347,9 +426,14 @@
                     "src": "207:7:0"
                   }
                 ],
-                "id": 22,
+                "id": 14,
                 "name": "ParameterList",
-                "src": "206:9:0"
+                "src": "196:0:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
               },
               {
                 "children": [
@@ -362,10 +446,11 @@
                         "attributes": {
                           "argumentTypes": null,
                           "isConstant": false,
-                          "isLValue": true,
+                          "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
-                          "type": "bytes32"
+                          "type": "bytes32",
+                          "operator": "="
                         },
                         "children": [
                           {
@@ -374,13 +459,80 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 5,
-                              "type": "mapping(address => bytes32)",
-                              "value": "messages"
+                              "referencedDeclaration": 3,
+                              "type": "bytes32",
+                              "value": "messages",
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "blurb"
                             },
-                            "id": 23,
-                            "name": "Identifier",
-                            "src": "229:8:0"
+                            "id": 19,
+                            "name": "MemberAccess",
+                            "src": "202:26:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Capsule.Message storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 10,
+                                      "type": "mapping(address => struct Capsule.Message storage ref)",
+                                      "value": "messages"
+                                    },
+                                    "id": 15,
+                                    "name": "Identifier",
+                                    "src": "202:8:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "sender",
+                                      "referencedDeclaration": null,
+                                      "type": "address"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 73,
+                                          "type": "msg",
+                                          "value": "msg"
+                                        },
+                                        "id": 16,
+                                        "name": "Identifier",
+                                        "src": "211:3:0"
+                                      }
+                                    ],
+                                    "id": 17,
+                                    "name": "MemberAccess",
+                                    "src": "211:10:0"
+                                  }
+                                ],
+                                "id": 18,
+                                "name": "IndexAccess",
+                                "src": "202:20:0"
+                              }
+                            ]
                           },
                           {
                             "attributes": {
@@ -390,8 +542,12 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "sender",
-                              "referencedDeclaration": null,
-                              "type": "address"
+                              "referencedDeclaration": 12,
+                              "type": "bytes32",
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "value": "message"
                             },
                             "children": [
                               {
@@ -409,39 +565,664 @@
                                 "src": "238:3:0"
                               }
                             ],
-                            "id": 25,
-                            "name": "MemberAccess",
-                            "src": "238:10:0"
+                            "id": 20,
+                            "name": "Identifier",
+                            "src": "231:7:0"
                           }
                         ],
-                        "id": 26,
-                        "name": "IndexAccess",
-                        "src": "229:20:0"
+                        "id": 21,
+                        "name": "Assignment",
+                        "src": "202:36:0"
                       }
                     ],
-                    "id": 27,
-                    "name": "Return",
-                    "src": "222:27:0"
+                    "id": 22,
+                    "name": "ExpressionStatement",
+                    "src": "202:36:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "timeStamp",
+                              "referencedDeclaration": 5,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Capsule.Message storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 10,
+                                      "type": "mapping(address => struct Capsule.Message storage ref)",
+                                      "value": "messages"
+                                    },
+                                    "id": 23,
+                                    "name": "Identifier",
+                                    "src": "244:8:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "sender",
+                                      "referencedDeclaration": null,
+                                      "type": "address"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 73,
+                                          "type": "msg",
+                                          "value": "msg"
+                                        },
+                                        "id": 24,
+                                        "name": "Identifier",
+                                        "src": "253:3:0"
+                                      }
+                                    ],
+                                    "id": 25,
+                                    "name": "MemberAccess",
+                                    "src": "253:10:0"
+                                  }
+                                ],
+                                "id": 26,
+                                "name": "IndexAccess",
+                                "src": "244:20:0"
+                              }
+                            ],
+                            "id": 27,
+                            "name": "MemberAccess",
+                            "src": "244:30:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 75,
+                              "type": "uint256",
+                              "value": "now"
+                            },
+                            "id": 28,
+                            "name": "Identifier",
+                            "src": "277:3:0"
+                          }
+                        ],
+                        "id": 29,
+                        "name": "Assignment",
+                        "src": "244:36:0"
+                      }
+                    ],
+                    "id": 30,
+                    "name": "ExpressionStatement",
+                    "src": "244:36:0"
                   }
                 ],
-                "id": 28,
+                "id": 31,
                 "name": "Block",
-                "src": "216:38:0"
+                "src": "196:90:0"
               }
             ],
-            "id": 29,
+            "id": 32,
             "name": "FunctionDefinition",
-            "src": "177:77:0"
+            "src": "152:134:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getMessage",
+              "payable": false,
+              "scope": 61,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 33,
+                "name": "ParameterList",
+                "src": "309:2:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 60,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 34,
+                        "name": "ElementaryTypeName",
+                        "src": "320:7:0"
+                      }
+                    ],
+                    "id": 35,
+                    "name": "VariableDeclaration",
+                    "src": "320:7:0"
+                  }
+                ],
+                "id": 36,
+                "name": "ParameterList",
+                "src": "319:9:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        38
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "timePassed",
+                          "scope": 60,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 37,
+                            "name": "ElementaryTypeName",
+                            "src": "335:4:0"
+                          }
+                        ],
+                        "id": 38,
+                        "name": "VariableDeclaration",
+                        "src": "335:15:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "-",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 75,
+                              "type": "uint256",
+                              "value": "now"
+                            },
+                            "id": 39,
+                            "name": "Identifier",
+                            "src": "353:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "timeStamp",
+                              "referencedDeclaration": 5,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Capsule.Message storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 10,
+                                      "type": "mapping(address => struct Capsule.Message storage ref)",
+                                      "value": "messages"
+                                    },
+                                    "id": 40,
+                                    "name": "Identifier",
+                                    "src": "359:8:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "sender",
+                                      "referencedDeclaration": null,
+                                      "type": "address"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 73,
+                                          "type": "msg",
+                                          "value": "msg"
+                                        },
+                                        "id": 41,
+                                        "name": "Identifier",
+                                        "src": "368:3:0"
+                                      }
+                                    ],
+                                    "id": 42,
+                                    "name": "MemberAccess",
+                                    "src": "368:10:0"
+                                  }
+                                ],
+                                "id": 43,
+                                "name": "IndexAccess",
+                                "src": "359:20:0"
+                              }
+                            ],
+                            "id": 44,
+                            "name": "MemberAccess",
+                            "src": "359:30:0"
+                          }
+                        ],
+                        "id": 45,
+                        "name": "BinaryOperation",
+                        "src": "353:36:0"
+                      }
+                    ],
+                    "id": 46,
+                    "name": "VariableDeclarationStatement",
+                    "src": "335:54:0"
+                  },
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">",
+                          "type": "tuple()",
+                          "isStructConstructorCall": false,
+                          "names": [
+                            null
+                          ],
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 76,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 47,
+                            "name": "Identifier",
+                            "src": "395:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "3135",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "bool",
+                              "value": "15",
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "operator": ">"
+                            },
+                            "id": 50,
+                            "name": "BinaryOperation",
+                            "src": "403:16:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 38,
+                                  "type": "uint256",
+                                  "value": "timePassed"
+                                },
+                                "id": 48,
+                                "name": "Identifier",
+                                "src": "403:10:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "313830",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 180",
+                                  "value": "180"
+                                },
+                                "id": 49,
+                                "name": "Literal",
+                                "src": "416:3:0"
+                              }
+                            ]
+                          }
+                        ],
+                        "id": 51,
+                        "name": "FunctionCall",
+                        "src": "395:25:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 36
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "blurb",
+                                  "referencedDeclaration": 3,
+                                  "type": "bytes32"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "struct Capsule.Message storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 10,
+                                          "type": "mapping(address => struct Capsule.Message storage ref)",
+                                          "value": "messages"
+                                        },
+                                        "id": 50,
+                                        "name": "Identifier",
+                                        "src": "432:8:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "member_name": "sender",
+                                          "referencedDeclaration": null,
+                                          "type": "address"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 72,
+                                              "type": "msg",
+                                              "value": "msg"
+                                            },
+                                            "id": 51,
+                                            "name": "Identifier",
+                                            "src": "441:3:0"
+                                          }
+                                        ],
+                                        "id": 52,
+                                        "name": "MemberAccess",
+                                        "src": "441:10:0"
+                                      }
+                                    ],
+                                    "id": 53,
+                                    "name": "IndexAccess",
+                                    "src": "432:20:0"
+                                  }
+                                ],
+                                "id": 54,
+                                "name": "MemberAccess",
+                                "src": "432:26:0"
+                              }
+                            ],
+                            "id": 55,
+                            "name": "Return",
+                            "src": "425:33:0"
+                          }
+                        ],
+                        "id": 56,
+                        "name": "Block",
+                        "src": "417:48:0"
+                      }
+                    ],
+                    "id": 52,
+                    "name": "ExpressionStatement",
+                    "src": "395:25:0"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 36
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "member_name": "blurb",
+                          "referencedDeclaration": 3,
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "struct Capsule.Message storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10,
+                                  "type": "mapping(address => struct Capsule.Message storage ref)",
+                                  "value": "messages"
+                                },
+                                "id": 53,
+                                "name": "Identifier",
+                                "src": "434:8:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 73,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 54,
+                                    "name": "Identifier",
+                                    "src": "443:3:0"
+                                  }
+                                ],
+                                "id": 55,
+                                "name": "MemberAccess",
+                                "src": "443:10:0"
+                              }
+                            ],
+                            "id": 56,
+                            "name": "IndexAccess",
+                            "src": "434:20:0"
+                          }
+                        ],
+                        "id": 57,
+                        "name": "MemberAccess",
+                        "src": "434:26:0"
+                      }
+                    ],
+                    "id": 58,
+                    "name": "Return",
+                    "src": "427:33:0"
+                  }
+                ],
+                "id": 59,
+                "name": "Block",
+                "src": "329:137:0"
+              }
+            ],
+            "id": 60,
+            "name": "FunctionDefinition",
+            "src": "290:176:0"
           }
         ],
-        "id": 30,
+        "id": 61,
         "name": "ContractDefinition",
-        "src": "25:231:0"
+        "src": "25:444:0"
       }
     ],
-    "id": 31,
+    "id": 62,
     "name": "SourceUnit",
-    "src": "0:256:0"
+    "src": "0:469:0"
   },
   "compiler": {
     "name": "solc",
@@ -451,9 +1232,9 @@
     "4447": {
       "events": {},
       "links": {},
-      "address": "0xf25186b5081ff5ce73482ad761db0eb0d25abfbf"
+      "address": "0x2e335f247e91caa168c64b63104c4475b2af3942"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-11T18:57:22.681Z"
+  "updatedAt": "2017-11-11T21:33:10.753Z"
 }
