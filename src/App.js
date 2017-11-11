@@ -62,14 +62,14 @@ class App extends Component {
     this.state.web3.eth.getAccounts((error, accounts) => {
       capsule.deployed().then((instance) => {
         capsuleInstance = instance;
-        this.setState({ accounts })
+        this.setState({ accounts, capsuleInstance })
       }).then((result) => {
         // Get the value from the contract to prove it worked.
         return this.state.capsuleInstance.getMessage.call(accounts[0])
       }).then((result) => {
         // Update state with the result.
         let stringResult = this.state.web3.toAscii(result);
-        return this.setState({ message: stringResult })
+        return this.setState({ storageValue: stringResult })
       })
     })
   }
