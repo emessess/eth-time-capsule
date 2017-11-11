@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import CapsuleContract from '../build/contracts/Capsule.json'
 import getWeb3 from './utils/getWeb3'
 
@@ -14,8 +13,12 @@ class App extends Component {
 
     this.state = {
       storageValue: 0,
-      web3: null
+      web3: null,
+      capsuleInstance: null,
+      newMsgInput: ''
     }
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount() {
@@ -55,8 +58,7 @@ class App extends Component {
     this.state.web3.eth.getAccounts((error, accounts) => {
       capsule.deployed().then((instance) => {
         capsuleInstance = instance;
-
-        // Stores a given value, 5 by default.
+        this.setState({ capsuleInstance })
         return capsuleInstance.setMessage('hello world', {from: accounts[0]})
       }).then((result) => {
         // Get the value from the contract to prove it worked.
@@ -69,6 +71,10 @@ class App extends Component {
     })
   }
 
+  handleChange(event) {
+    this.setState({newMsgInput: event.target.value})
+  }
+
   render() {
     return (
       <div className="App">
@@ -79,8 +85,14 @@ class App extends Component {
         <main className="container">
           <div className="pure-g">
             <div className="pure-u-1-1">
-              <h1>Ethereum Time Capsule<h1>
-              <h2></h2>
+              <h1>Ethereum Time Capsule</h1>
+              <form>
+                <input type="text" maxLength="32" value={this.state.newMsgInput} onChange={this.handleChange}/>
+                <input type="submit" value="Transact"/>
+              </form>
+            </div>
+            <div className="pure-u-1-1">
+              <h1>Ethereum Time Capsule</h1>
               <p>Your message is: {this.state.storageValue}</p>
             </div>
           </div>
@@ -90,4 +102,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;
