@@ -16,7 +16,7 @@
       "type": "function"
     },
     {
-      "constant": false,
+      "constant": true,
       "inputs": [],
       "name": "getMessage",
       "outputs": [
@@ -26,15 +26,15 @@
         }
       ],
       "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6101658061001e6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b6100f3565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020816000191690555050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050905600a165627a7a72305820eac88a0649b9fcc4b5b0c54fb1ecadc021b39aee9f54a3a9554a105fb639f8ae0029",
-  "deployedBytecode": "0x60606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b6100f3565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020816000191690555050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050905600a165627a7a72305820eac88a0649b9fcc4b5b0c54fb1ecadc021b39aee9f54a3a9554a105fb639f8ae0029",
-  "sourceMap": "25:231:0:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "25:231:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;177:77;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:85;161:7;138:8;:20;147:10;138:20;;;;;;;;;;;;;;;:30;;;;;;;88:85;:::o;177:77::-;207:7;229:8;:20;238:10;229:20;;;;;;;;;;;;;;;;222:27;;177:77;:::o",
-  "source": "pragma solidity ^0.4.2;\n\ncontract Capsule {\n  mapping (address => bytes32) messages;\n\n  function setMessage(bytes32 message) public {\n    messages[msg.sender] = message;\n  }\n\n  function getMessage() returns(bytes32) {\n    return messages[msg.sender];\n  }\n}",
+  "bytecode": "0x6060604052341561000f57600080fd5b6101658061001e6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b6100f3565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020816000191690555050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050905600a165627a7a723058206ee23d2ea4d7b2c8f314ac0b8cae06b7ae62786d10646aeac68c596174d22ddc0029",
+  "deployedBytecode": "0x60606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b32fead514610051578063ce6d41de14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100a9565b005b341561008357600080fd5b61008b6100f3565b60405180826000191660001916815260200191505060405180910390f35b806000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020816000191690555050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050905600a165627a7a723058206ee23d2ea4d7b2c8f314ac0b8cae06b7ae62786d10646aeac68c596174d22ddc0029",
+  "sourceMap": "25:240:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:240:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;177:86;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:85;161:7;138:8;:20;147:10;138:20;;;;;;;;;;;;;;;:30;;;;;;;88:85;:::o;177:86::-;216:7;238:8;:20;247:10;238:20;;;;;;;;;;;;;;;;231:27;;177:86;:::o",
+  "source": "pragma solidity ^0.4.2;\n\ncontract Capsule {\n  mapping (address => bytes32) messages;\n\n  function setMessage(bytes32 message) public {\n    messages[msg.sender] = message;\n  }\n\n  function getMessage() constant returns(bytes32) {\n    return messages[msg.sender];\n  }\n}",
   "sourcePath": "/Users/emessess/FSA/Senior/Stackathon/Notes/contracts/Capsule.sol",
   "ast": {
     "attributes": {
@@ -293,7 +293,7 @@
           },
           {
             "attributes": {
-              "constant": false,
+              "constant": true,
               "implemented": true,
               "isConstructor": false,
               "modifiers": [
@@ -302,7 +302,7 @@
               "name": "getMessage",
               "payable": false,
               "scope": 30,
-              "stateMutability": "nonpayable",
+              "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
             },
@@ -339,17 +339,17 @@
                         },
                         "id": 20,
                         "name": "ElementaryTypeName",
-                        "src": "207:7:0"
+                        "src": "216:7:0"
                       }
                     ],
                     "id": 21,
                     "name": "VariableDeclaration",
-                    "src": "207:7:0"
+                    "src": "216:7:0"
                   }
                 ],
                 "id": 22,
                 "name": "ParameterList",
-                "src": "206:9:0"
+                "src": "215:9:0"
               },
               {
                 "children": [
@@ -380,7 +380,7 @@
                             },
                             "id": 23,
                             "name": "Identifier",
-                            "src": "229:8:0"
+                            "src": "238:8:0"
                           },
                           {
                             "attributes": {
@@ -406,42 +406,42 @@
                                 },
                                 "id": 24,
                                 "name": "Identifier",
-                                "src": "238:3:0"
+                                "src": "247:3:0"
                               }
                             ],
                             "id": 25,
                             "name": "MemberAccess",
-                            "src": "238:10:0"
+                            "src": "247:10:0"
                           }
                         ],
                         "id": 26,
                         "name": "IndexAccess",
-                        "src": "229:20:0"
+                        "src": "238:20:0"
                       }
                     ],
                     "id": 27,
                     "name": "Return",
-                    "src": "222:27:0"
+                    "src": "231:27:0"
                   }
                 ],
                 "id": 28,
                 "name": "Block",
-                "src": "216:38:0"
+                "src": "225:38:0"
               }
             ],
             "id": 29,
             "name": "FunctionDefinition",
-            "src": "177:77:0"
+            "src": "177:86:0"
           }
         ],
         "id": 30,
         "name": "ContractDefinition",
-        "src": "25:231:0"
+        "src": "25:240:0"
       }
     ],
     "id": 31,
     "name": "SourceUnit",
-    "src": "0:256:0"
+    "src": "0:265:0"
   },
   "compiler": {
     "name": "solc",
@@ -451,9 +451,9 @@
     "4447": {
       "events": {},
       "links": {},
-      "address": "0xf25186b5081ff5ce73482ad761db0eb0d25abfbf"
+      "address": "0xaa588d3737b611bafd7bd713445b314bd453a5c8"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-11T18:57:22.681Z"
+  "updatedAt": "2017-11-11T23:44:07.742Z"
 }

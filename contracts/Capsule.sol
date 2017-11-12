@@ -7,7 +7,7 @@ contract Capsule {
     messages[msg.sender] = message;
   }
 
-  function getMessage() returns(bytes32) {
+  function getMessage() constant returns(bytes32) {
     return messages[msg.sender];
   }
 }
