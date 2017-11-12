@@ -15,7 +15,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      storageValue: 0,
+      storageValue: '',
       accounts: [],
       web3: null,
       capsuleInstance: null,
@@ -47,29 +47,23 @@ class App extends Component {
   }
 
   instantiateContract() {
-    /*
-     * SMART CONTRACT EXAMPLE
-     *
-     * Normally these functions would be called in the context of a
-     * state management library, but for convenience I've placed them here.
-     */
 
-     let capsuleInstance;
-
+    let capsuleInstance;
 
     capsule.setProvider(this.state.web3.currentProvider);
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
       capsule.deployed().then((instance) => {
         capsuleInstance = instance;
-        this.setState({ accounts })
+        this.setState({ accounts, capsuleInstance })
       }).then((result) => {
         // Get the value from the contract to prove it worked.
+        console.log(result);
         return this.state.capsuleInstance.getMessage.call(accounts[0])
       }).then((result) => {
         // Update state with the result.
         let stringResult = this.state.web3.toAscii(result);
-        return this.setState({ message: stringResult })
+        return this.setState({ storageValue: stringResult })
       })
     })
   }
@@ -84,6 +78,7 @@ class App extends Component {
       return instance.setMessage(this.state.newMsgInput, {from: this.state.accounts[0]})
     }).then(transaction => {
       //transaction object is here now, could use to render transaction reciept number
+      console.log(transaction);
       this.setState({newMsgInput: ''});
     })
 
