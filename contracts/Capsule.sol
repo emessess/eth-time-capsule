@@ -1,7 +1,7 @@
 pragma solidity ^0.4.2;
 
 contract Capsule {
-  mapping (address => bytes32) messages;
+  mapping (address => bytes32) public messages;
 
   function setMessage(bytes32 message) public {
     messages[msg.sender] = message;

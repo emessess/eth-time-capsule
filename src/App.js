@@ -74,21 +74,20 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    capsule.deployed().then(instance => {
-      return instance.setMessage(this.state.newMsgInput, {from: this.state.accounts[0]})
-    }).then(transaction => {
+  
+    this.state.capsuleInstance.setMessage(this.state.newMsgInput, {from: this.state.accounts[0]})
+    .then(transaction => {
       //transaction object is here now, could use to render transaction reciept number
       console.log(transaction);
-      this.setState({newMsgInput: ''});
+      this.setState({newMsgInput: ''})
     })
 
 
   }
 
   checkChain() {
-    capsule.deployed().then(instance => {
-      return instance.getMessage.call(this.state.accounts[0])
-    }).then(result => {
+    this.state.capsuleInstance.getMessage.call().then(result => {
+      console.log('####', result);
       let stringResult = this.state.web3.toAscii(result);
       return this.setState({ storageValue: stringResult})
     })
